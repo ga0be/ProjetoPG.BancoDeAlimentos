@@ -2,11 +2,11 @@ import tkinter as tk
 from tkinter import ttk
 import sqlite3
 
-# Funktion zur Verbindung mit der Datenbank
+# Função para criar e se conectar ao banco de dados
 def conectardb():
     return sqlite3.connect('bancodealimentos1.db')
 
-# Funktion zur Einrichtung der Datenbank
+# Função para criar tabelas no banco de dados
 def inicializardb():
     with conectardb() as conexao:
 
@@ -51,7 +51,7 @@ def inicializardb():
 
         conexao.commit()
 
-# Funktion zum Registrieren eines Mitarbeiters
+# Função para registrar o colaborador
 def cadastro_colaborador():
     global conome, cosobrenome
     try:
@@ -86,6 +86,7 @@ def cadastro_colaborador():
 
     alimentoaba.grid(row=9, column=0, pady=7, padx=7, ipadx=40)
 
+#Interface de janela pro colaborador
 def janelacolaborador():
     global Nome_colaborador, Sobrenome_colaborador, CPF, cidade, Email, Telefone, janelacolab
 
@@ -119,6 +120,7 @@ def janelacolaborador():
 
     janelacolab.mainloop()
 
+#Função para registrar o beneficiário
 def cadastro_beneficiario():
     try:
         bennome = Nome_beneficiario.get()
@@ -152,6 +154,7 @@ def cadastro_beneficiario():
                                  , command=consultaalimentos, fg='white', bg='green', highlightcolor='white')
     alimentoconsulta.grid(row=9, column=0, pady=7, padx=7, ipadx=30)
 
+#Interface de janela pro beneficiário
 def janelabeneficiario():
     global Nome_beneficiario, Sobrenome_beneficiario, CPFb, logradourob, Emailb, Telefoneb, janelabenef
 
@@ -183,6 +186,7 @@ def janelabeneficiario():
 
     botaocadastroben.grid(column=0, row=6, columnspan=2, padx=10, pady=10, ipadx=40)
 
+#Função para cadastrar alimentos
 def cadastro_alimentos():
     try:
        alnome = nomealimento.get()
@@ -209,6 +213,8 @@ def cadastro_alimentos():
      erro_label = tk.Label(text=f'Erro: {erro}', font=('Arial', 10, 'bold'), fg='red')
      erro_label.grid(row=4, column=1, pady=7, padx=7)
 
+#Interface de janela para cadastrar alimentos
+
 def janelaalimentos():
     global nomealimento, qntalimento, dataalimento, janelaalimento
 
@@ -233,14 +239,7 @@ def janelaalimentos():
                                 command=cadastro_alimentos, fg='white', bg='green')
     botaocadastroal.grid(column=0, row=3, columnspan=2, padx=30)
 
-
-
-def obteralimentos():
-
-
-    return
-
-
+#Função para consultar numa janela os alimentos cadastrados 
 def consultaalimentos():
     global janelaconsulta
     janelabenef.destroy()
@@ -263,10 +262,10 @@ def consultaalimentos():
     janelainicial.mainloop()
 
 
-# Setup der Datenbank
+# Inicializando o banco de dados
 inicializardb()
 
-# Hauptfenster erstellen
+# Criando a janela inicial
 janelainicial = tk.Tk()
 janelainicial.title('Escolher seu cadastro:')
 janelainicial.geometry("600x200")
